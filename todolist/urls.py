@@ -32,7 +32,8 @@ urlpatterns = [
     path('login/', LoginAPI.as_view(), name='login'),
     path('logout/', knox_view.LogoutView.as_view(), name='logout'),
     path('logoutall/', knox_view.LogoutAllView.as_view(), name='logoutall'),
-    path('admin/', admin.site.urls),
+
+    # todolist URL
     path('todolist/', include('Todos.urls'))
 
 ]
