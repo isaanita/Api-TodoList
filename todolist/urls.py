@@ -33,5 +33,8 @@ urlpatterns = [
     path('logoutall/', knox_view.LogoutAllView.as_view(), name='logoutall'),
     path('todolist/', include('Todos.urls')),
 
+    # todolist URL
+    path('todolist/', include('Todos.urls'))
+
 ]
 
