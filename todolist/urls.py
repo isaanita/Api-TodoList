@@ -4,7 +4,6 @@ from LoginAndRegister.views import RegisterAPI
 from django.urls import path, include
 from knox import views as knox_view
 from LoginAndRegister.login_views import LoginAPI
-from django.urls import path
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
@@ -32,8 +31,7 @@ urlpatterns = [
     path('login/', LoginAPI.as_view(), name='login'),
     path('logout/', knox_view.LogoutView.as_view(), name='logout'),
     path('logoutall/', knox_view.LogoutAllView.as_view(), name='logoutall'),
-    path('admin/', admin.site.urls),
-    path('todolist/', include('Todos.urls'))
+    path('todolist/', include('Todos.urls')),
 
 ]
 
