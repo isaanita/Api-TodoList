@@ -8,6 +8,7 @@ from django.urls import path
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
+from LoginAndRegister.changepass_views import ChangePasswordView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -31,10 +32,13 @@ urlpatterns = [
     path('register/', RegisterAPI.as_view(), name='register'),
     path('login/', LoginAPI.as_view(), name='login'),
     path('logout/', knox_view.LogoutView.as_view(), name='logout'),
-    path('logoutall/', knox_view.LogoutAllView.as_view(), name='logoutall'),
+    path('logout-all/', knox_view.LogoutAllView.as_view(), name='logout-all'),
 
     # todolist URL
-    path('todolist/', include('Todos.urls'))
+    path('todolist/', include('Todos.urls')),
+
+    # change password URL
+    path('change-password/', ChangePasswordView.as_view(), name='change-password'),
 
 ]
 
