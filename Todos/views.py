@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from rest_framework import generics, filters
 from .serializers import *
 from .models import *
@@ -26,3 +27,6 @@ class DeleteTodo(generics.DestroyAPIView):
     queryset = todo.objects.all()
     serializer_class = todoSerializer
 
+@login_required
+def dashboard(request): 
+    return render(request, 'registration/dashboard.html', {'section': 'dashboard'})
