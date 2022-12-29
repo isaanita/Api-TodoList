@@ -1,10 +1,6 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from django.contrib.auth.decorators import login_required
-from rest_framework import generics, filters
-=======
 from rest_framework import generics, filters, permissions
->>>>>>> 9fd54b2b5cf14415358bfa51751390df7044cf30
 from .serializers import *
 from .models import *
 from django_filters.rest_framework import DjangoFilterBackend

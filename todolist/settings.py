@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_rest_passwordreset',
     'LoginAndRegister',
     'todolist',
     'knox',
@@ -125,3 +126,8 @@ try:
     from .local_settings import *
 except BaseException:
     pass
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#Copy link which is in email, will be similar to:
+#/api/password_reset/?token=339e80fe05e5ca9fc74799213f81a093d1f

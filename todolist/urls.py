@@ -1,6 +1,5 @@
 from django.contrib import admin
-from django.urls import path
-from LoginAndRegister.views import RegisterAPI
+from LoginAndRegister.views import RegisterAPI, PasswordTokenCheckAPI
 from django.urls import path, include
 from knox import views as knox_view
 from LoginAndRegister.login_views import LoginAPI
@@ -9,6 +8,7 @@ from drf_yasg import openapi
 from rest_framework import permissions
 from django.contrib.auth import views as auth_views
 from LoginAndRegister.changepass_views import ChangePasswordView
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -39,13 +39,13 @@ urlpatterns = [
 
 
     #reset password urls
-    path('password_reset/',auth_views.PasswordResetView.as_view(),name='password_reset'),
-    path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
-    path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
-    path('reset/done/',auth_views.PasswordResetCompleteView.as_view(),name='password_reset_complete'),
+    path('password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
 
     # change password URL
     path('change-password/', ChangePasswordView.as_view(), name='change-password'),
+
+    path('password-reset/<uidb64>/token/', PasswordTokenCheckAPI.as_view(), name='password-reset-confirm'),
+    
 
 ]
 
